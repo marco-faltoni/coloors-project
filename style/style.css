@@ -86,11 +86,15 @@ path, i, svg {
   position: absolute;
   bottom: 0%;
   background: white;
+  opacity: 0;
   padding: 1rem;
   width: 80%;
   border-top-right-radius: 1rem;
+  pointer-events: none;
   border-top-left-radius: 1rem;
   /* We are adding an adjustemnt class */
+  -webkit-transform: translateY(100px);
+          transform: translateY(100px);
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   /* Slider Stuff */
@@ -165,5 +169,68 @@ path, i, svg {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.copy-container, .save-container, .library-container {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.copy-container .copy-popup, .copy-container .save-popup, .copy-container .library-popup, .save-container .copy-popup, .save-container .save-popup, .save-container .library-popup, .library-container .copy-popup, .library-container .save-popup, .library-container .library-popup {
+  background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 2rem;
+  -webkit-transition: -webkit-transform 0.6s ease;
+  transition: -webkit-transform 0.6s ease;
+  transition: transform 0.6s ease;
+  transition: transform 0.6s ease, -webkit-transform 0.6s ease;
+  -webkit-transform: translateY(-2rem);
+          transform: translateY(-2rem);
+  min-width: 30%;
+  min-height: 30vh;
+}
+
+.copy-container .copy-popup h4, .copy-container .save-popup h4, .copy-container .library-popup h4, .save-container .copy-popup h4, .save-container .save-popup h4, .save-container .library-popup h4, .library-container .copy-popup h4, .library-container .save-popup h4, .library-container .library-popup h4 {
+  font-size: 2rem;
+  padding: 2rem;
+}
+
+.copy-container .copy-popup.active, .copy-container .save-popup.active, .copy-container .library-popup.active, .save-container .copy-popup.active, .save-container .save-popup.active, .save-container .library-popup.active, .library-container .copy-popup.active, .library-container .save-popup.active, .library-container .library-popup.active {
+  -webkit-transform: translateY(0rem);
+          transform: translateY(0rem);
+}
+
+.copy-container.active, .save-container.active, .library-container.active {
+  opacity: 1;
+  pointer-events: all;
 }
 /*# sourceMappingURL=style.css.map */
