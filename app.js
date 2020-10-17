@@ -15,6 +15,10 @@ const closeadjustBtns = document.querySelectorAll('.close-adjustment');
 const sliderCtn = document.querySelectorAll('.sliders');
 let initialColors;
 
+// for Local Storage
+let savedPalettes = [];
+
+
 // ADD EVENT LISTENER
 generateBtn.addEventListener('click', randomColors);
 sliders.forEach(slider => {
@@ -246,6 +250,77 @@ function lockLayer(e, index) {
     } else {
         e.target.innerHTML = '<i class="fas fa-lock-open"></i>';
     }
+}
+
+
+// implement save palette and locale storage stuffs
+const saveBtn = document.querySelector('.save');
+const submitSave = document.querySelector('.submit-save');
+const closeSave = document.querySelector('.close-save');
+const saveContainer = document.querySelector('.save-container');
+const saveInput = document.querySelector('.save-container input');
+
+// event listener
+saveBtn.addEventListener('click',openPalette);
+closeSave.addEventListener('click',closePalette);
+submitSave.addEventListener('click',savePalette);
+
+function openPalette(e) {
+    const popup = saveContainer.children[0];
+    saveContainer.classList.add('active');
+    popup.classList.add('active');
+}
+
+function closePalette(e) {
+    const popup = saveContainer.children[0];
+    saveContainer.classList.remove('active');
+    popup.classList.remove('active');
+}
+
+function savePalette(e) {
+    // rimuovo la finestra di salvataggio
+    saveContainer.classList.remove('active');
+    popup.classList.remove('active');
+    // salvo il testo di salvataggio immesso dall'utente 
+    const name = saveInput.value;
+    // creo una variabile con array vuoto su cui andrò a pushare le palette
+    const colors = [];
+    // ciclo le attuali palette e le pusho nell'array vuoto creato sopra
+    clickedHexes.forEach(hex => {
+        colors.push(hex.innerText)
+    });
+    // genero un oggetto
+    // salvo la lunghezza delle palette, inizializzata vuota all'inizio
+    let paletteNr = savedPalettes.length;
+
+    // creo un oggetto in cui salvo il testo dell'utente, i colori pushati e il numero identificativo di ogni palette salvata
+    const paletteObj = {name, colors, nr: paletteNr};
+    // console.log(paletteObj);
+
+    // pusho l'oggetto con i dati sopra nell'array vuoto creato all'inizio
+    savedPalettes.push(paletteObj);
+    console.log(savedPalettes);
+
+    // chiamo la funziona che mi salva la palette nel local storage
+    savetoLocal(paletteObj);
+
+    // ripulisco il testo dell'utente per il nuovo eventuale salvataggio
+    saveInput.value = '';
+}
+
+function savetoLocal(palette) {
+    // inizializzo var non definita
+    let localPalettes;
+    // se il la chiave del local storage è nulla, la var la setto come array vuoto, altrimenti setto la chiave del local storage con il nome "palettes"
+    if (localStorage.getItem('palettes') === null) {
+        localPalettes = [];
+    } else {
+        localPalettes = JSON.parse(localStorage.getItem('palettes'));
+    }
+    // pusho l'oggetto che ho passato alla funzione nell'array
+    localPalettes.push(palette);
+    // passo al Local storage l'array con l'oggetto contente le info salvate
+    localStorage.setItem('palette', JSON.stringify(localPalettes));
 }
 
 randomColors();

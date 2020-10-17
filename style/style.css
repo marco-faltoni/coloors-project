@@ -233,4 +233,41 @@ path, i, svg {
   opacity: 1;
   pointer-events: all;
 }
+
+.save-popup .save-name {
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+.save-popup .submit-save {
+  margin: 2rem;
+  padding: 1rem 3rem;
+  background: #3c3c5c;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.save-popup .close-save {
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  padding: 0.5rem;
+}
+
+.library-popup {
+  min-width: 40%;
+  padding: 1rem;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  overflow-y: scroll;
+  max-height: 50vh;
+}
+
+.library-popup .close-library {
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  padding: 0.5rem;
+}
 /*# sourceMappingURL=style.css.map */

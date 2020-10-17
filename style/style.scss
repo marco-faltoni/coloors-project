@@ -161,36 +161,39 @@ path,i,svg {
     pointer-events: all;
 }
 
-// .save-popup{
-//     .save-name {
-//         font-size: 1.5rem;
-//         padding: 1rem;
-//     }
-//     .submit-save {
-//         margin: 2rem;
-//         padding: 1rem 3rem;
-//         background: rgb(60, 60, 92);
-//         border: none;
-//         border-radius: 10px;
-//         color: white;
-//         cursor: pointer;
-//     }
-// }
+.save-popup{
+    .save-name {
+        font-size: 1.5rem;
+        padding: 1rem;
+    }
+    .submit-save {
+        margin: 2rem;
+        padding: 1rem 3rem;
+        background: rgb(60, 60, 92);
+        border: none;
+        border-radius: 10px;
+        color: white;
+        cursor: pointer;
+    }
+    .close-save {
+        border-top-right-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        padding: 0.5rem;
+    }
+}
 
-
-// .close-save, .close-library {
-//     border-top-right-radius: 1rem;
-//     border-bottom-left-radius: 1rem;
-//     padding: 0.5rem;
-// }
-
-// .library-popup {
-//     min-width: 40%;
-//     padding: 1rem;
-//     justify-content: flex-start;
-//     overflow-y: scroll;
-//     max-height: 50vh;
-// }
+.library-popup {
+    min-width: 40%;
+    padding: 1rem;
+    justify-content: flex-start;
+    overflow-y: scroll;
+    max-height: 50vh;
+    .close-library {
+        border-top-right-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        padding: 0.5rem;
+    }
+}
 
 // .custom-palette {
 //     display: flex;
