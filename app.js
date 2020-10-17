@@ -259,11 +259,16 @@ const submitSave = document.querySelector('.submit-save');
 const closeSave = document.querySelector('.close-save');
 const saveContainer = document.querySelector('.save-container');
 const saveInput = document.querySelector('.save-container input');
+const libraryContainer = document.querySelector('.library-container');
+const libraryBtn = document.querySelector('.library');
+const closeLibraryBtn = document.querySelector('.close-library');
 
 // event listener
 saveBtn.addEventListener('click',openPalette);
 closeSave.addEventListener('click',closePalette);
 submitSave.addEventListener('click',savePalette);
+libraryBtn.addEventListener('click',openLibrary);
+closeLibraryBtn.addEventListener('click',closeLibrary);
 
 function openPalette(e) {
     const popup = saveContainer.children[0];
@@ -306,6 +311,40 @@ function savePalette(e) {
 
     // ripulisco il testo dell'utente per il nuovo eventuale salvataggio
     saveInput.value = '';
+
+    //genero la palette per la libreria, creo un div
+    const palette = document.createElement('div');
+    // all'interno del div aggiungo una classe "custom-palette"
+    palette.classList.add('custom-palette');
+    // creo un titolo h4
+    const title = document.createElement('h4');
+    // al titolo creato assegno il nome dell'oggetto che avevo creat sopra, ovvero il nome scelto dall'utente per salvare la palette
+    title.innerText = paletteObj.name;
+    // creo un div preview a cui aggiungo una classe chiamata "small preview"
+    const preview = document.createElement('div');
+    preview.classList.add('small-preview');
+    // ciclo i colori presente nell'oggetto
+    paletteObj.colors.forEach (smallColor => {
+        // per ogni colore creo uno div a cui assegno come background color il colore ciclato ogni volta, poi lo appendo
+        const smallDiv = document.createElement('div');
+        smallDiv.style.background = smallColor;
+        preview.appendChild(smallDiv);
+    });
+    // creo un bottone a cui aggiungo una classe
+    const paletteBtn = document.createElement('button');
+    paletteBtn.classList.add('pick-palette-btn');
+    // aggiungo al div creato i dati dell'oggetto con le info
+    palette.classList.add(paletteObj.nr);
+    // assegno al bottone il testo select
+    paletteBtn.innerText = 'Select';
+
+    // appendo al div creato il titolo, la preview e il testo 
+    palette.appendChild(title);
+    palette.appendChild(preview);
+    palette.appendChild(paletteBtn);
+    // appendo all'HTML il var palette contenente tutte le info
+    libraryContainer.children[0].appendChild(palette);
+
 }
 
 function savetoLocal(palette) {
@@ -321,6 +360,18 @@ function savetoLocal(palette) {
     localPalettes.push(palette);
     // passo al Local storage l'array con l'oggetto contente le info salvate
     localStorage.setItem('palette', JSON.stringify(localPalettes));
+}
+
+function openLibrary() {
+    const popup = libraryContainer.children[0];
+    libraryContainer.classList.add('active');
+    popup.classList.add('active');
+}
+
+function closeLibrary() {
+    const popup = libraryContainer.children[0];
+    libraryContainer.classList.remove('active');
+    popup.classList.remove('active');
 }
 
 randomColors();
